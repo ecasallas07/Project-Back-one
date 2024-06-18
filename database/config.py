@@ -52,6 +52,14 @@ class DatabaseGateway:
         self.lastrowid = str(mycursor.lastrowid) # lastrowid recuperate the id of last row
         print(f"Elemento guardado con el id: {self.lastrowid}")
 
+    def select_id(self,id,table):
+        db = self.db_connect()
+        mycursor = db.cursor()
+        sql = "SELECT * FROM'" + str(table) + "'WHERE id = '" + str(id) + "'"
+        mycursor.execute(sql)
+        result = mycursor.fetchone()
+        return json.dumps(result)
+
 # Test connection database
 w1 = DatabaseGateway()
 w1.db_connect()
