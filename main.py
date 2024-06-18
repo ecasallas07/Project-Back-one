@@ -14,13 +14,39 @@ def read_users():
     db = config.DatabaseGateway()
     try:
         info = db.db_query(sql)
-        return {"user": info}
+        #return {"user": info}
     except Exception as e:
         return {"error":str(e)}
      
+@app.get("/users/{id}") 
+def read_users_id(id: int):
+   #sql  = "SELECT * FROM users WHERE id '" + str(id) +"'" 
+   #db = config.DatabaseGateway()
+   try:
+      config.select_id(id,'users')     
+   except Exception  as e:
+       return {'error':str(e)}
 
 
-#@app.get("/articles"):
+@app.get("/articles")
+def read_articles():
+    sql = "SELECT * FROM articles"
+    db =  config.DatabaseGateway()
+    try:
+        info = db.db_query()
+    except Exception as e:
+        return {'error': str(e)}
+            
+@app.get("/articles/{id}")
+def read_articles_id(id:int):
+    #db =  config.DatabaseGateway()
+    try:
+        coonfig.select_id(id,'articles')
+
+    except Exception as e:
+        return {'error':str(e)}
+
+
 
 
 

@@ -18,3 +18,9 @@ This is a `RESTful API` that would power a personal blog.
 - Python for version 2 (Flask) -- **review** 
 - Golang for version 1.1(learn golang with projects)
 - Postman
+
+
+**Design database**
+Construction model of database:
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](design-database.png)
+
