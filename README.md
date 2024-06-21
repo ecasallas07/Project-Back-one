@@ -24,3 +24,7 @@ This is a `RESTful API` that would power a personal blog.
 Construction model of database:
 ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](design-database.png)
 
+**JSON**
+
+1.Return element in json.dumps(<data>)
+2. Next is tranform in json with json.loads(<data>)

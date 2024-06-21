@@ -37,10 +37,11 @@ class DatabaseGateway:
                 row_data[columnas[column_name][0]] = column_value
 
             data.append(row_data)
+            
+        return data
+        # json_object = json.dumps(data) # dumps: convert data to json
 
-        json_object = json.dumps(data) # dumps: convert data to json
-
-        return json_object
+        # return json_object
 
 
     def db_execute(self, query_string,data):
@@ -50,16 +51,20 @@ class DatabaseGateway:
         my_db.commit() # save changes in database
 
         self.lastrowid = str(mycursor.lastrowid) # lastrowid recuperate the id of last row
-        print(f"Elemento guardado con el id: {self.lastrowid}")
+        print(f"Elemento guardado con el id: {self.lastrowid}")     
 
     def select_id(self,id,table):
         db = self.db_connect()
-        mycursor = db.cursor()
-        sql = "SELECT * FROM'" + str(table) + "'WHERE id = '" + str(id) + "'"
-        mycursor.execute(sql)
-        result = mycursor.fetchone()
-        return json.dumps(result)
-
+        if db is None:
+            return None
+        try:
+            mycursor = db.cursor(dictionary=True)
+            sql =f"SELECT * FROM {table} WHERE id = %s"
+            mycursor.execute(sql, (id,)) #la coma es una convecion de python para decir q es una tupla de un solo elemento 
+            result = mycursor.fetchone()
+            return json.dumps(result)
+        except Exception as e:
+            return {'error':str(e)}
 # Test connection database
 w1 = DatabaseGateway()
 w1.db_connect()
