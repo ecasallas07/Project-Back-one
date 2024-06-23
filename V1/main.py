@@ -192,7 +192,7 @@ async def read_category_id(id: int):
 def save_category(category: Category):
     try:
         mycursor = DB.cursor()
-        query ="INSERT INTO category() VALUES (%s, %s, %s,%s,%s)"
+        query ="INSERT INTO category(title,content,summary,status,user_id) VALUES (%s, %s, %s,%s,%s)"
         data= (category.title,category.content,category.summary,category.status,category.user_id)
         mycursor.execute(query,data)
         DB.commit()
@@ -200,32 +200,32 @@ def save_category(category: Category):
     except Exception as e:
         return {'error':str(e)}
 
-@app.put("/blog/users/edit/{id}")
-async def edit_users(id:int,user:User):
+@app.put("/blog/category/edit/{id}")
+async def edit_category(id:int,category:Category):
     try:
         mycursor=DB.cursor()
-        sql = "UPDATE users SET username = %s, email = %s,firsta_name= %s, lastname = %s WHERE id = %s"
-        data = (user.username,user.email,user.firsta_name,user.lastname,id)
+        sql = "UPDATE category SET title = %s, content = %s,summary= %s, status = %s, user_id = %s WHERE id = %s"
+        data = (category.title,category.content,category.summary,category.status,category.user_id)
         mycursor.execute(sql,data)
         DB.commit()
         if mycursor.rowcount > 0:
-            return {"user":"User successfully updated"}
+            return {"user":"Category successfully updated"}
         else:
-           raise HTTPException(status_code=404, detail="User no updated")   
+           raise HTTPException(status_code=404, detail="Category no updated")   
     except Exception as e:
         return {"error": str(e)}     
     
-@app.delete("/blog/users/delete/{id}")
-def delete_users(id:int):
+@app.delete("/blog/category/delete/{id}")
+def delete_category(id:int):
     try:
         mycursor = DB.cursor()
-        sql = "DELETE FROM users WHERE id =  %s"
+        sql = "DELETE FROM category WHERE id =  %s"
         mycursor.execute(sql,(id,))
         DB.commit()  # commit() --> save changes to database
         if mycursor.rowcount > 0:
-            return {"user":"User seccessfully deleted"}
+            return {"user":"Category seccessfully deleted"}
         else: 
-            raise HTTPException(status_code=404, detail="User no deleted") 
+            raise HTTPException(status_code=404, detail="Category no deleted") 
     except Exception as e:
         return {"error": str(e)}    
 
