@@ -26,5 +26,9 @@ Construction model of database:
 
 **JSON**
 
-1.Return element in json.dumps(<data>)
-2. Next is tranform in json with json.loads(<data>)
+- Return element in json.dumps(<data>)
+- Next is tranform in json with json.loads(<data>)
+
+**SQLAlchemy**
+- Install --> pip install sqlalchemy
+- Common ORMs are for example: Django-ORM (part of the Django framework), `SQLAlchemy ORM (part of SQLAlchemy, independent of framework)` and Peewee (independent of framework), among others.
