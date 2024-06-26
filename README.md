@@ -32,3 +32,7 @@ Construction model of database:
 **SQLAlchemy**
 - Install --> pip install sqlalchemy
 - Common ORMs are for example: Django-ORM (part of the Django framework), `SQLAlchemy ORM (part of SQLAlchemy, independent of framework)` and Peewee (independent of framework), among others.
+
+**Depends**
+
+spanish concept [Una dependencia en software es cualquier objeto que una clase necesita para funcionar correctamente. Por ejemplo, si una clase A necesita una instancia de la clase B para realizar alguna de sus funciones, B es una dependencia de A.]

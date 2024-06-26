@@ -30,12 +30,12 @@ class Category(BaseModel):
 class Articles_Category(BaseModel):
     article_id: int
     category_id: int
-@app.get("/blog")
+@app.get("/V1/blog")
 def read_root():
     return{"message":"API project one BLOG"}
 
 #USERS ENDPOINTS
-@app.get("/blog/users")
+@app.get("/V1/blog/users")
 def read_users():
     sql = "SELECT * FROM users"
     try:
@@ -44,7 +44,7 @@ def read_users():
     except Exception as e:
         return {"error":str(e)}
      
-@app.get("/blog/users/{id}") 
+@app.get("/V1/blog/users/{id}") 
 async def read_users_id(id: int):
    try:
        table_name = 'users'
@@ -56,7 +56,7 @@ async def read_users_id(id: int):
            raise HTTPException(status_code=404, detail="User not found")    
    except Exception  as e:
        return {'error':str(e)}
-@app.post("/blog/users/save/")
+@app.post("/V1/blog/users/save/")
 def save_users(user: User):
     try:
         mycursor = DB.cursor()
@@ -68,7 +68,7 @@ def save_users(user: User):
     except Exception as e:
         return {'error':str(e)}
 
-@app.put("/blog/users/edit/{id}")
+@app.put("/V1/blog/users/edit/{id}")
 async def edit_users(id:int,user:User):
     try:
         mycursor=DB.cursor()
@@ -83,7 +83,7 @@ async def edit_users(id:int,user:User):
     except Exception as e:
         return {"error": str(e)}     
     
-@app.delete("/blog/users/delete/{id}")
+@app.delete("/V1/blog/users/delete/{id}")
 def delete_users(id:int):
     try:
         mycursor = DB.cursor()
@@ -98,7 +98,7 @@ def delete_users(id:int):
         return {"error": str(e)}    
     
 # ARTICLES ENDPOINTS
-@app.get("/blog/articles")
+@app.get("/V1/blog/articles")
 def read_articles():
     sql = "SELECT * FROM articles"  
     try:
@@ -107,7 +107,7 @@ def read_articles():
     except Exception as e:
         return {'error': str(e)}
             
-@app.get("/blog/articles/{id}")
+@app.get("/V1/blog/articles/{id}")
 def read_articles_id(id:int):
     try:
         info = db_gateway.select_id(id,'articles')
@@ -121,7 +121,7 @@ def read_articles_id(id:int):
     except Exception as e:
         return {'error':str(e)}
 
-@app.post("/blog/articles/save/")
+@app.post("/V1/blog/articles/save/")
 def save_articles(article:Article):
     try:
         mycursor = DB.cursor()
@@ -134,7 +134,7 @@ def save_articles(article:Article):
     except Exception as e:
         return {"error":str(e)}
 
-@app.put("/blog/articles/edit/{id}")
+@app.put("/V1/blog/articles/edit/{id}")
 def edit_articles(id:int,article:Article):
 
     try:
@@ -151,7 +151,7 @@ def edit_articles(id:int,article:Article):
         return {'error': str(e)}    
 
 
-@app.delete("/blog/articles/delete/{id}")
+@app.delete("/V1/blog/articles/delete/{id}")
 def delete_articles(id:int):
     
     try:
@@ -168,7 +168,7 @@ def delete_articles(id:int):
     
 
 # CATEGORY ENDPOINTS
-@app.get("/blog/category")
+@app.get("/V1/blog/category")
 def read_category():
     sql = "SELECT * FROM category"
     try:
@@ -177,7 +177,7 @@ def read_category():
     except Exception as e:
         return {"error":str(e)}
      
-@app.get("/blog/category/{id}") 
+@app.get("/V1/blog/category/{id}") 
 async def read_category_id(id: int):
    try:
        info = db_gateway.select_id(id,'category')
@@ -188,7 +188,7 @@ async def read_category_id(id: int):
            raise HTTPException(status_code=404, detail="Category not found")    
    except Exception  as e:
        return {'error':str(e)}
-@app.post("/blog/category/save/")
+@app.post("/V1/blog/category/save/")
 def save_category(category: Category):
     try:
         mycursor = DB.cursor()
@@ -200,7 +200,7 @@ def save_category(category: Category):
     except Exception as e:
         return {'error':str(e)}
 
-@app.put("/blog/category/edit/{id}")
+@app.put("/V1/blog/category/edit/{id}")
 async def edit_category(id:int,category:Category):
     try:
         mycursor=DB.cursor()
@@ -215,7 +215,7 @@ async def edit_category(id:int,category:Category):
     except Exception as e:
         return {"error": str(e)}     
     
-@app.delete("/blog/category/delete/{id}")
+@app.delete("/V1/blog/category/delete/{id}")
 def delete_category(id:int):
     try:
         mycursor = DB.cursor()
