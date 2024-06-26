@@ -36,3 +36,54 @@ Construction model of database:
 **Depends**
 
 spanish concept [Una dependencia en software es cualquier objeto que una clase necesita para funcionar correctamente. Por ejemplo, si una clase A necesita una instancia de la clase B para realizar alguna de sus funciones, B es una dependencia de A.]
+
+
+
+**FastAPI - Notes and Concepts**
+
+*Simple types*
+
+You can use, for example:
+- str
+- int
+- float
+- bool
+- bytes
+- list[str] --> example type list || example: func(hhh:list[str])
+- Optional[str] = None --> from typing import Optional || example: func(name: Optional[str]= None)
+- str | None --> Union || exmaple: func(name: str | None)
+
+
+*Pydantic Models*
+
+Library to perform data validation 
+
+from pydantic import BaseModel
+
+class User(BaseModel):
+    id: int
+    name: str = "John Doe"
+    signup_ts: datetime | None = None
+    friends: list[int] = []
+
+
+*Concurrency and async / await*
+
+Details about the async def syntax for path operation functions and some background about asynchronous code, concurrency, and parallelism.
+
+# Tutorial 
+
+- Install -> pip install api 
+- Run of code --> fastapi dev main.py
+
+**Operations**
+
+- POST: to create data
+- GET : to read data
+- PUT : to update data
+- DELETE : to delete data
+
+-...the query parameters are:
+`http://127.0.0.1:8000/items/?skip=0&limit=10`
+skip: with a value of 0
+limit: with a value of 10
